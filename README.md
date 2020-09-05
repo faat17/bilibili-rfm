@@ -7,4 +7,11 @@
 
 ## 数据概览
 ### 数据表
-![数据概况](https://github.com/faat17/fantian/blob/master/image/shuju.jpg)
+![数据概况](https://github.com/faat17/fantian/blob/master/image/shuju.jpg) 
+coins：投硬币数  
+danmu：弹幕数  
+favorite：收藏数  
+like：点赞数  
+comment：评论数  
+share：分享数  
+view：播放量  
