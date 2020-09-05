@@ -8,6 +8,7 @@
 ## 数据概览
 ### 数据表
 ![数据概况](https://github.com/faat17/fantian/blob/master/image/shuju.jpg) 
+**关键指标解释**
 coins：投硬币数  
 danmu：弹幕数  
 favorite：收藏数  
@@ -15,3 +16,10 @@ like：点赞数
 comment：评论数  
 share：分享数  
 view：播放量  
+
+### 各字段数量统计
+![字段统计](https://github.com/faat17/fantian/blob/master/image/字段统计.jpg) 
+
+### 缺失值统计
+![缺失值](https://github.com/faat17/fantian/blob/master/image/缺失值.jpg) 
+
