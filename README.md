@@ -8,7 +8,7 @@
 ## 数据概览
 ### 数据表
 ![数据概况](https://github.com/faat17/fantian/blob/master/image/shuju.jpg) 
-**关键指标解释**
+**关键指标解释**  
 coins：投硬币数  
 danmu：弹幕数  
 favorite：收藏数  
@@ -23,3 +23,11 @@ view：播放量
 ### 缺失值统计
 ![缺失值](https://github.com/faat17/fantian/blob/master/image/缺失值.jpg) 
 
+## 数据清洗
+### 删除空值和重复值
+```python```
+table_view = table_view.dropna() #删除空值
+table_view = table_view.drop_duplicates() #删除重复值
+```
+![删除重复值](https://github.com/faat17/fantian/blob/master/image/删除重复值.jpg)  
+共删除1330行数据，剩余数据量48799行
