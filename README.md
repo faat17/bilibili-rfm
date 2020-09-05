@@ -33,3 +33,9 @@ table_view = table_view.drop_duplicates() #删除重复值
 
 ![删除重复值](https://github.com/faat17/fantian/blob/master/image/删除重复值.jpg)  
 共删除1330行数据，剩余数据量**48799**行
+
+### 提取构建模型所需的关键词
+```python
+table_view = table_view[['partition','author','datetime','view','danmu','comment','like','coins','favorite','share']] #提取关键词
+```
+
