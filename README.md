@@ -71,9 +71,11 @@ table_mi = table_view.loc[table_view['partition']=='星海'] # 一般发布军�
 table_car = table_view.loc[table_view['partition']=='汽车']
 ```
 
-### 关键词构造
+### 指标构造
 #### 构建F值
-**F值：**首先，先筛选出发布视频大于5的up主，视频播放量在5W以上的视频数少于5，说明可能是有些视频标题取得好播放量才高，而不是视频质量稳定的up主。
+**F值**
+首先，先筛选出发布视频大于5的up主，视频播放量在5W以上的视频数少于5，说明可能是有些视频标题取得好播放量才高，而不是视频质量稳定的up主。  
+
 ```python
 la_count = round(table_la.groupby('author')['datetime'].count()).reset_index() #计算发布视频的次数
 la_count.columns = ['author','times'] 
@@ -105,3 +107,31 @@ la_F = pd.merge(la_count_5,la_F,on = 'author',how = 'inner')
 la_F = la_F.loc[la_F['F']>0] #剔除一天发布很多视频的up主
 ```
 #### 构建I值
+**I值**  
+```python
+la_danmu = table_la.groupby('author')['danmu'].sum()
+la_comment = table_la.groupby('author')['comment'].sum()
+la_view = table_la.groupby('author')['view'].sum()
+la_count = table_la.groupby('author')['datetime'].count()
+
+# I值 = (总弹幕数+总评论数)/总播放量/统计范围内视频数量
+la_I = round((la_danmu+la_comment)/la_view/la_count*100,2).reset_index()
+la_I.columns = ['author','I']
+la_F_I = pd.merge(la_F,la_I,on = 'author',how = 'inner')
+```
+
+**L值**
+```python
+table_la['L'] = (table_la['like']+table_la['coins']*2+table_la['favorite']*3+table_la['share']*4)/table_la['view']*100 #计算每个视频的L值
+
+la_L = (table_la.groupby('author')['L'].sum()/table_la.groupby('author')['datetime'].count()).reset_index()
+la_L.columns = ['author','L']
+la_L = round(la_L,2)
+
+la_IFL = pd.merge(la_F_I,la_L,on = 'author',how = 'inner')
+la_IFL['partition'] = '社科人文' #打上标签
+la_IFL = la_IFL[['partition','author','I','F','L']]
+```
+
+将构建的指标合并为新的模型，一个初级的IFL模型就初步完成了~
+![IFL初级模型](https://github.com/faat17/fantian/blob/master/image/IFL初级模型.jpg)  
