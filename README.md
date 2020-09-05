@@ -70,3 +70,34 @@ table_tec = table_view.loc[table_view['partition']=='野生技术协会']
 table_mi = table_view.loc[table_view['partition']=='星海'] # 一般发布军事内容
 table_car = table_view.loc[table_view['partition']=='汽车']
 ```
+
+### 关键词构造
+#### 构建F值
+**F值：**首先，先筛选出发布视频大于5的up主，视频播放量在5W以上的视频数少于5，说明可能是有些视频标题取得好播放量才高，而不是视频质量稳定的up主。
+```python
+la_count = round(table_la.groupby('author')['datetime'].count()).reset_index() #计算发布视频的次数
+la_count.columns = ['author','times'] 
+
+la_count_5 = la_count[la_count['times']>5] #剔除掉发布视频数小于5的up主
+la_count_5.info()
+```
+![剔除](https://github.com/faat17/fantian/blob/master/image/剔除视频数小于5.jpg)  
+筛选完之后只剩余509个up主视频数在5个以上。
+
+```python
+la_datetime_last = table_la.groupby('author')['datetime'].max()
+la_datetime_late = table_la.groupby('author')['datetime'].min()
+# F值 =(最晚发布日期 - 最早发布日期) / 发布次数 ，保留整数
+la_F = round((la_datetime_last-la_datetime_late).dt.days/table_la.groupby('author')['datetime'].count()).reset_index()
+la_F.columns = ['author','F']
+la_F = pd.merge(la_count_5,la_F,on = 'author',how = 'inner')
+```
+通过对F值升序排列发现，存在部分up主最晚发布日期与最早发布日期为0的现象，猜测是在同一天内发布了大量的视频。
+![F为0](https://github.com/faat17/fantian/blob/master/image/F为0.jpg)  
+通过访问主页发现，其视频均为转载，将F值为0的up主剔除统计范围。  
+![转载视频](https://github.com/faat17/fantian/blob/master/image/转载视频.jpg)  
+
+```python
+la_F = la_F.loc[la_F['F']>0] #剔除一天发布很多视频的up主
+```
+#### 构建I值
