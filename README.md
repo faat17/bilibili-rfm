@@ -7,4 +7,4 @@
 
 ## 数据概览
 ### 数据表
-![数据概况](https://github.com/faat17/bilibili-rfm/blob/master/image/%E6%95%B0%E6%8D%AE%E6%A6%82%E5%86%B5.png)
+![数据概况](https://github.com/faat17/bilibili-rfm/tree/master/image/数据概况.png)
