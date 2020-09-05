@@ -73,7 +73,7 @@ table_car = table_view.loc[table_view['partition']=='汽车']
 
 ### 指标构造
 #### 构建F值
-**F值**
+**F值**  
 首先，先筛选出发布视频大于5的up主，视频播放量在5W以上的视频数少于5，说明可能是有些视频标题取得好播放量才高，而不是视频质量稳定的up主。  
 
 ```python
@@ -133,5 +133,5 @@ la_IFL['partition'] = '社科人文' #打上标签
 la_IFL = la_IFL[['partition','author','I','F','L']]
 ```
 
-将构建的指标合并为新的模型，一个初级的IFL模型就初步完成了~
+将构建的指标合并为新的模型，一个初级的IFL模型就初步完成了~  
 ![IFL初级模型](https://github.com/faat17/fantian/blob/master/image/IFL初级模型.jpg)  
