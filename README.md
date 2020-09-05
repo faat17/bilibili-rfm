@@ -92,9 +92,13 @@ la_F = round((la_datetime_last-la_datetime_late).dt.days/table_la.groupby('autho
 la_F.columns = ['author','F']
 la_F = pd.merge(la_count_5,la_F,on = 'author',how = 'inner')
 ```
+
 通过对F值升序排列发现，存在部分up主最晚发布日期与最早发布日期为0的现象，猜测是在同一天内发布了大量的视频。
+
 ![F为0](https://github.com/faat17/fantian/blob/master/image/F为0.jpg)  
+
 通过访问主页发现，其视频均为转载，将F值为0的up主剔除统计范围。  
+
 ![转载视频](https://github.com/faat17/fantian/blob/master/image/转载视频.jpg)  
 
 ```python
