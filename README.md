@@ -72,8 +72,7 @@ table_car = table_view.loc[table_view['partition']=='汽车']
 ```
 
 ### 指标构造
-#### 构建F值
-**F值**  
+#### 构建F值  
 首先，先筛选出发布视频大于5的up主，视频播放量在5W以上的视频数少于5，说明可能是有些视频标题取得好播放量才高，而不是视频质量稳定的up主。  
 
 ```python
@@ -106,8 +105,7 @@ la_F = pd.merge(la_count_5,la_F,on = 'author',how = 'inner')
 ```python
 la_F = la_F.loc[la_F['F']>0] #剔除一天发布很多视频的up主
 ```
-#### 构建I值
-**I值**  
+#### 构建I值  
 ```python
 la_danmu = table_la.groupby('author')['danmu'].sum()
 la_comment = table_la.groupby('author')['comment'].sum()
@@ -120,7 +118,7 @@ la_I.columns = ['author','I']
 la_F_I = pd.merge(la_F,la_I,on = 'author',how = 'inner')
 ```
 
-**L值**
+#### 构建L值  
 ```python
 table_la['L'] = (table_la['like']+table_la['coins']*2+table_la['favorite']*3+table_la['share']*4)/table_la['view']*100 #计算每个视频的L值
 
@@ -134,4 +132,5 @@ la_IFL = la_IFL[['partition','author','I','F','L']]
 ```
 
 将构建的指标合并为新的模型，一个初级的IFL模型就初步完成了~  
+
 ![IFL初级模型](https://github.com/faat17/fantian/blob/master/image/IFL初级模型.jpg)  
