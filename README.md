@@ -25,9 +25,11 @@ view：播放量
 
 ## 数据清洗
 ### 删除空值和重复值
-```python```
+
+```python
 table_view = table_view.dropna() #删除空值
 table_view = table_view.drop_duplicates() #删除重复值
 ```
+
 ![删除重复值](https://github.com/faat17/fantian/blob/master/image/删除重复值.jpg)  
-共删除1330行数据，剩余数据量48799行
+共删除1330行数据，剩余数据量**48799**行
