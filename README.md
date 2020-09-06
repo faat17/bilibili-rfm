@@ -18,7 +18,7 @@ share：分享数
 view：播放量  
 
 ### 各字段数量统计
-![字段统计](https://github.com/faat17/bilibili-rfm/blob/master/image/%E5%AD%97%E6%AE%B5%E7%BB%9F%E8%AE%A1.jpg) 
+![字段统计](https://github.com/faat17/bilibili-rfm/raw/master/image/%E5%AD%97%E6%AE%B5%E7%BB%9F%E8%AE%A1.jpg) 
 
 ### 缺失值统计
 ![缺失值](https://github.com/faat17/bilibili-rfm/blob/master/image/%E7%BC%BA%E5%A4%B1%E5%80%BC.jpg) 
