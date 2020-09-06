@@ -299,6 +299,7 @@ account['人数占比'] = account['人群类型'] / account['人群类型'].sum(
 ![机械top15](./image/机械top15.jpg)  
 
 
-参考文章：
+**参考文章：  
 1.数据不吹牛:《不到70行Python代码，轻松玩转RFM用户分析模型》  
-2.Crossin:《B站用户行为分析非官方报告》
+2.Crossin:《B站用户行为分析非官方报告》  
+3.https://github.com/Vespa314/bilibili-api/blob/master/api.md
