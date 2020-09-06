@@ -259,7 +259,7 @@ account = IFL['人群类型'].value_counts().reset_index()
 account['人数占比'] = account['人群类型'] / account['人群类型'].sum()
 ```
 
-![人数占比](https://github.com/faat17/bilibili-rfm/raw/master/image/%E4%BA%BA%E6%95%B0%E5%8D%A0%E6%AF%94.jpg) 
+![人数占比](./image/人数占比.jpg) 
 
 将统计数据通过扇形统计图的方式进行可视化呈现
 
