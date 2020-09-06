@@ -18,10 +18,10 @@ share：分享数
 view：播放量  
 
 ### 各字段数量统计
-![字段统计](https://github.com/faat17/bilibili-rfm/raw/master/image/%E5%AD%97%E6%AE%B5%E7%BB%9F%E8%AE%A1.jpg) 
+![字段统计](./image/%E5%AD%97%E6%AE%B5%E7%BB%9F%E8%AE%A1.jpg) 
 
 ### 缺失值统计
-![缺失值](https://github.com/faat17/bilibili-rfm/raw/master/image/%E7%BC%BA%E5%A4%B1%E5%80%BC.jpg) 
+![缺失值](./image/%E7%BC%BA%E5%A4%B1%E5%80%BC.jpg) 
 
 ## 数据清洗
 ### 删除空值和重复值
@@ -31,7 +31,7 @@ table_view = table_view.dropna() #删除空值
 table_view = table_view.drop_duplicates() #删除重复值
 ```
 
-![删除重复值](https://github.com/faat17/bilibili-rfm/raw/master/image/%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E5%80%BC.jpg)  
+![删除重复值](./image/%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E5%80%BC.jpg)  
 共删除1330行数据，剩余数据量**48799**行
 
 ### 提取构建模型所需的指标
@@ -61,7 +61,7 @@ L值表示的是统计时间内发布视频的平均点赞率，越大表示视�
 
 ### 对科技区进行分区
 根据不同的分区进行IFL打分，这里以数据量最多的**社科人文**为例  
-![分区](https://github.com/faat17/bilibili-rfm/raw/master/image/%E5%88%86%E5%8C%BA.jpg)
+![分区](./image/%E5%88%86%E5%8C%BA.jpg)
 ```python
 table_sc = table_view.loc[table_view['partition']=='科学科普']
 table_la = table_view.loc[table_view['partition']=='社科人文']
@@ -82,7 +82,7 @@ la_count.columns = ['author','times']
 la_count_5 = la_count[la_count['times']>5] #剔除掉发布视频数小于5的up主
 la_count_5.info()
 ```
-![剔除](https://github.com/faat17/bilibili-rfm/raw/master/image/%E5%89%94%E9%99%A4%E8%A7%86%E9%A2%91%E6%95%B0%E5%B0%8F%E4%BA%8E5.jpg)  
+![剔除](./image/%E5%89%94%E9%99%A4%E8%A7%86%E9%A2%91%E6%95%B0%E5%B0%8F%E4%BA%8E5.jpg)  
 筛选完之后只剩余509个up主视频数在5个以上。
 
 ```python
@@ -96,11 +96,11 @@ la_F = pd.merge(la_count_5,la_F,on = 'author',how = 'inner')
 
 通过对F值升序排列发现，存在部分up主最晚发布日期与最早发布日期为0的现象，猜测是在同一天内发布了大量的视频。
 
-![F为0](https://github.com/faat17/bilibili-rfm/raw/master/image/F%E4%B8%BA0.jpg)  
+![F为0](./image/F%E4%B8%BA0.jpg)  
 
 通过访问主页发现，其视频均为转载，将F值为0的up主剔除统计范围。  
 
-![转载视频](https://github.com/faat17/bilibili-rfm/raw/master/image/%E8%BD%AC%E8%BD%BD%E8%A7%86%E9%A2%91.jpg)  
+![转载视频](./image/%E8%BD%AC%E8%BD%BD%E8%A7%86%E9%A2%91.jpg)  
 
 ```python
 la_F = la_F.loc[la_F['F']>0] #剔除一天发布很多视频的up主
@@ -133,4 +133,4 @@ la_IFL = la_IFL[['partition','author','I','F','L']]
 
 将构建的指标合并为新的模型，一个初级的IFL模型就初步完成了~  
 
-![IFL初级模型](https://github.com/faat17/bilibili-rfm/raw/master/image/IFL%E5%88%9D%E7%BA%A7%E6%A8%A1%E5%9E%8B.jpg)  
+![IFL初级模型](./image/IFL%E5%88%9D%E7%BA%A7%E6%A8%A1%E5%9E%8B.jpg)  
