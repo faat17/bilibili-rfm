@@ -7,7 +7,7 @@
 
 ## 数据概览
 ### 数据表
-![数据概况](https://github.com/faat17/fantian/blob/master/image/shuju.jpg) 
+![数据概况](https://github.com/faat17/bilibili-rfm/blob/master/image/shuju.jpg) 
 **关键指标解释**  
 coins：投硬币数  
 danmu：弹幕数  
