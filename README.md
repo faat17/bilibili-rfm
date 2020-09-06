@@ -148,9 +148,10 @@ IFL = pd.concat([la_IFL,sc_IFL,ma_IFL,tec_IFL,mi_IFL,car_IFL],ignore_index=True)
 * F值表示视频的平均发布周期，我们当然想要经常看到，所以这个值越大时，分值越小。
 * L值表示发布视频的平均点赞率，S值越大时，质量越稳定，分值也就越大。I/S值根据四分位数打分，F值根据更新周期打分。  
 利用pandas中的**describe()** 参数对IFL模型进行描述性统计，将I值和L值按照区间分为不同的维度  
+
 ![IFL描述](./image/IFL描述.jpg)  
 
-I值打分：
+**I值打分：**
 
 I打分  | I值  | 含义
  ---- | ----- | ------  
